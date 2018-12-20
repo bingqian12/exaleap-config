@@ -1,0 +1,39 @@
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+
+logging:
+  level:
+    root: INFO
+
+
+##设置一个唯一的名称， springboot 启动时，会打印这个名称， 用来调试是否用对了配置文件。
+config-name: gatewayPre
+
+ribbon:
+  ReadTimeout: 1000 # 请求处理超时时间
+  ConnectTimeout: 1000 # 请求连接超时时间
+# 断路器超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000

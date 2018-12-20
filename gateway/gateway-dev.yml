@@ -1,0 +1,44 @@
+spring:
+  zipkin:
+    base-url: http://192.168.0.70:9411/
+  sleuth:
+    sampler:
+      percentage: 1
+      probability: 1.0
+#  rabbitmq:
+#    host: 192.168.0.70
+#    port: 5672
+#    username: guest
+#    password: guest
+
+# database name
+#  redis:
+#    database: 0
+## name of Redis server  哨兵监听的Redis server的名称
+#    sentinel:
+#      master: mymaster
+## comma-separated list of host:port pairs  哨兵的配置列表
+#      nodes: 192.168.0.126:26379,192.168.0.188:26379,192.168.0.189:26379
+
+
+
+##设置一个唯一的名称， springboot 启动时，会打印这个名称， 用来调试是否用对了配置文件。
+config-name: gatewayDev
+
+logging:
+  level:
+    root: INFO
+
+ribbon:
+  ReadTimeout: 2000 # 请求处理超时时间
+  ConnectTimeout: 1000 # 请求连接超时时间
+# 断路器超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
